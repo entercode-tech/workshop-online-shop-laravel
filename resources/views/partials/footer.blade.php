@@ -16,10 +16,14 @@
 
     <!-- Page JS -->
     <script src="{{ URL::asset("/sneat/assets/js/dashboards-analytics.js") }}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script>
+        $(document).ready(function(){
+            new DataTable('#myTable');
+        })
         function logout(form_id){
             var conf = confirm('Yakin Ingin Keluar ?')
             if(conf){
