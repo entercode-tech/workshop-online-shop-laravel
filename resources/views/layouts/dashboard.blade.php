@@ -117,8 +117,8 @@
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
                                 <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text" class="form-control border-0 shadow-none"
-                                    placeholder="Search..." aria-label="Search..." />
+                                <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
+                                    aria-label="Search..." />
                             </div>
                         </div>
                         <!-- /Search -->
@@ -134,8 +134,8 @@
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow"
-                                    href="{{ url('javascript:void(0);') }}" data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="{{ url('javascript:void(0);') }}"
+                                    data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="{{ URL::asset('/sneat/assets/img/avatars/1.png') }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
@@ -153,7 +153,8 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
-                                                    <small class="text-muted">{{ implode('|',auth()->user()->getRoleNames()->toArray()) }}</small>
+                                                    <small
+                                                        class="text-muted">{{ implode('|',auth()->user()->getRoleNames()->toArray()) }}</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -192,9 +193,12 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-                    @yield('content')
+                        <div>
+                            <h3>{{ $title }}</h3>
+                        </div>
+                        @yield('content')
                     </div>
-                    
+
                     <!-- / Content -->
 
                     <!-- Footer -->

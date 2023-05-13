@@ -30,7 +30,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json('berhasil',200);
     }
 
     /**
