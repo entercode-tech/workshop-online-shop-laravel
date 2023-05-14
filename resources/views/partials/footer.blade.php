@@ -37,7 +37,7 @@
         let btn = form.find('#submit_btn')
         let icon_btn = btn.find('i')
 
-        let action = form.attr('action')
+        let action = form.attr('action') 
         let method = form.attr('method')
         let data = new FormData(form[0])
 
@@ -51,12 +51,19 @@
                 icon_btn.replaceWith(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
                     );
+                form.find('input, select, textarea').removeClass('is-invalid')
+                form.find('.error_alert').text('')
             },
             success: function(response) {
                 console.log(response);
             },
             error: function(response) {
-
+                let res = response.responseJSON
+                $.each(res.data, function (index, value) { 
+                    value = value[0]
+                    form.find('[name="'+index+'"]').addClass('is-invalid')
+                    form.find('#'+index+'_error_alert').text(value)
+                });
             },
             complete: function() {
                 btn.find('span').replaceWith(icon_btn)
