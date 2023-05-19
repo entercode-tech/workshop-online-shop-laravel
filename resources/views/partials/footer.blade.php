@@ -20,6 +20,7 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+@stack('js')
 <script>
     $(document).ready(function() {
         new DataTable('#myTable');
@@ -55,7 +56,7 @@
                 form.find('.error_alert').text('')
             },
             success: function(response) {
-                console.log(response);
+                window.location.href=response.data
             },
             error: function(response) {
                 let res = response.responseJSON

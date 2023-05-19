@@ -196,6 +196,17 @@
                         <div>
                             <h3>{{ $title }}</h3>
                         </div>
+                        @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            <strong>Berhasil !</strong> {{ session('success') }}
+                        </div>
+                        @endif
+                        @if (session('error'))
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Gagal !</strong> {{ session('error') }}
+                        </div>
+                        @endif
+                        
                         @yield('content')
                     </div>
 
