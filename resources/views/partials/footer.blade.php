@@ -20,6 +20,7 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @stack('js')
 <script>
     $(document).ready(function() {
@@ -27,10 +28,37 @@
     })
 
     function logout(form_id) {
-        var conf = confirm('Yakin Ingin Keluar ?')
-        if (conf) {
-            $(form_id).submit()
-        }
+        Swal.fire({
+            title: 'Yakin Ingin Keluar ?',
+            text: "Anda Akan Keluar Dari Aplikasi !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(form_id).submit()
+            }
+        })
+    }
+
+    function hapus_data(form_id) {
+        Swal.fire({
+            title: 'Hapus Data Ini ?',
+            text: "Data Akan Dihapus Permanen !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Iya',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(form_id).submit()
+            }
+        })
     }
 
     function send_form(form_id) {
@@ -38,7 +66,7 @@
         let btn = form.find('#submit_btn')
         let icon_btn = btn.find('i')
 
-        let action = form.attr('action') 
+        let action = form.attr('action')
         let method = form.attr('method')
         let data = new FormData(form[0])
 
@@ -51,19 +79,19 @@
             beforeSend: function() {
                 icon_btn.replaceWith(
                     '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>'
-                    );
+                );
                 form.find('input, select, textarea').removeClass('is-invalid')
                 form.find('.error_alert').text('')
             },
             success: function(response) {
-                window.location.href=response.data
+                window.location.href = response.data
             },
             error: function(response) {
                 let res = response.responseJSON
-                $.each(res.data, function (index, value) { 
+                $.each(res.data, function(index, value) {
                     value = value[0]
-                    form.find('[name="'+index+'"]').addClass('is-invalid')
-                    form.find('#'+index+'_error_alert').text(value)
+                    form.find('[name="' + index + '"]').addClass('is-invalid')
+                    form.find('#' + index + '_error_alert').text(value)
                 });
             },
             complete: function() {

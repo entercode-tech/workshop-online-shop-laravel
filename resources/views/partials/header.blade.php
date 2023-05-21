@@ -21,3 +21,8 @@
 <script src="{{ URL::asset("/sneat/assets/js/config.js") }}"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<style>
+    .swal2-backdrop-show{
+        z-index: 9999 !important
+    }
+</style>

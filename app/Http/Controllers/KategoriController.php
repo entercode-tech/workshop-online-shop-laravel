@@ -103,6 +103,15 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        try {
+            DB::beginTransaction();
+            $kategori->delete();
+            DB::commit();
+            return redirect()->back()->with('success','Berhasil Menghapus Data !');
+         } catch (Throwable $th) {
+             DB::rollback();
+             Log::debug('KategoriController::destroy() '.$th->getMessage());
+             return redirect()->back()->with('success','Terjadi Masalah !');
+         }
     }
 }

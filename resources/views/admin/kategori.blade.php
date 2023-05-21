@@ -21,9 +21,10 @@
                             <td class="text-nowrap">{{ $item->nama }}</td>
                             <td class="text-nowrap d-flex gap-2">
                                 <button class="btn btn-warning" onclick="edit_category('{{ route('kategori.update',$item->id) }}','{{ json_encode($item) }}')">Edit</button>
-                                <form action="{{ route('kategori.destroy',$item->id) }}" method="post">
+                                <form action="{{ route('kategori.destroy',$item->id) }}" method="post" id="delete_form{{ $item->id }}">
                                 @csrf
-                                <button type="button" class="btn btn-danger">Hapus</button>
+                                @method('DELETE')
+                                <button type="button" class="btn btn-danger" onclick="hapus_data('#delete_form{{ $item->id }}')">Hapus</button>
                                 </form>
                             </td>
                         </tr>
