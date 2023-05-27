@@ -21,10 +21,17 @@
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ URL::asset('js/currency.js') }}"></script>
 @stack('js')
 <script>
     $(document).ready(function() {
-        new DataTable('#myTable');
+        var sx = false;
+        if(screen.width < 992){
+            sx = true
+        }
+        new DataTable('#myTable',{
+            scrollX:sx
+        })
     })
 
     function logout(form_id) {

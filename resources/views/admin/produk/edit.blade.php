@@ -2,8 +2,9 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="{{ route('produk.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('produk.update',$produk->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('put')
                 <div class="row row-cols-1 row-cols-lg-2">
                     <div class="col">
 
@@ -19,7 +20,7 @@
                         <div class="form-group mb-3">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama"
-                                name="nama" placeholder="Nama" value="{{ old('nama') }}">
+                                name="nama" placeholder="Nama" value="{{ old('nama',$produk->nama) }}">
                             @error('nama')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -30,7 +31,7 @@
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1">Rp</span>
                                 <input type="number" class="form-control curencyField @error('harga') is-invalid @enderror"
-                                    id="harga" name="harga" placeholder="Harga" value="{{ old('harga') }}"
+                                    id="harga" name="harga" placeholder="Harga" value="{{ old('harga',$produk->harga) }}"
                                     aria-describedby="basic-addon1">
                             </div>
                             @error('harga')
@@ -41,10 +42,9 @@
                             <label for="kategori_id">Kategori</label>
                             <select class="form-control @error('kategori_id') is-invalid @enderror" id="kategori_id"
                                 name="kategori_id" placeholder="Pilih Kategori">
-                                <option value="" selected>--Pilih--</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
-                                        {{ old('kategori_id') == $category->id ? 'selected' : '' }}>{{ $category->nama }}
+                                        {{ old('kategori_id',$produk->kategori_id) == $category->id ? 'selected' : '' }}>{{ $category->nama }}
                                     </option>
                                 @endforeach
                             </select>
@@ -58,7 +58,7 @@
                         <div class="form-group mb-3">
                             <label for="deskripsi">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi"
-                                placeholder="Deskripsi" rows="7">{{ old('deskripsi') }}</textarea>
+                                placeholder="Deskripsi" rows="7">{{ old('deskripsi',$produk->deskripsi) }}</textarea>
                             @error('deskripsi')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -71,4 +71,10 @@
             </form>
         </div>
     </div>
+
+    @push('js')
+        <script>
+            $('#harga').trigger('keyup');
+        </script>
+    @endpush
 @endsection
